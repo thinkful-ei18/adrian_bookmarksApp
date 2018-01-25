@@ -13,7 +13,7 @@ const api = (function() {
 
 
   return {
-
+    getItems
   };
 
 }());
