@@ -2,6 +2,9 @@
 
 const bookmark =  (function(){
 
+  /* Create, Add, Generate, and Render Items
+  -----------------------------------*/
+
   const create = function (id, title, url, desc) {
 
     return {
@@ -73,6 +76,22 @@ const bookmark =  (function(){
     $('.js-bookmark-list').html(generatedBookmarks);
   };
 
+  /* Finding ID, Delete, and Updating
+  -----------------------------------*/
+
+  const findId = function (id) {
+    return this.items.find(item => item.id === id);
+  };
+
+  const findAndDelete = function(id) {
+    this.items = this.items.filter(item => item.id !== id);
+  };
+
+  const findAndUpdate = function (id, updatedItem) {
+    const foundItem = this.findById(id);
+    Object.assign(foundItem, updatedItem);
+  };
+
   return {
     create,
     add,
@@ -80,7 +99,13 @@ const bookmark =  (function(){
     generateString,
     render,
 
-    items: []
+    findId,
+    findAndDelete,
+    findAndUpdate,
+
+    items: [],
+    showForm: false,
+    minimumRating: null,
   };
 
 }());
