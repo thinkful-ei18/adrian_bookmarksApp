@@ -24,7 +24,7 @@ const bookmark =  (function(){
   };
 
   const generateElement = function (item) {
-
+    // DO NOT USE THIS METHOD.
     if (!item.detailedView) {
       return `
       <div class='.bookmark-item .js-bookmark-item'>

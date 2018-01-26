@@ -23,17 +23,6 @@ const api = (function() {
     });
   };
 
-  // CHANGE MY BOOKMARK!!!
-  const updateItem = function (id, value, callback) {
-    $.ajax({
-      url: `${BASE_URL}/bookmarks/:${id}`,
-      method: 'PATCH',
-      contentType: 'application/json',
-      data: JSON.stringify(value),
-      success: callback
-    });
-  };
-
   //I NEVER WANT TO SEE THIS BOOKMARK AGAIN!
   const deleteItem = function (id, callback) {
     $.ajax({
@@ -47,7 +36,6 @@ const api = (function() {
   return {
     getItems,
     createItem,
-    updateItem,
     deleteItem
 
   };
