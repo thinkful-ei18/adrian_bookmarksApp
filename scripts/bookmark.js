@@ -25,10 +25,10 @@ const bookmark = (function () {
 
   const generateElement = function (item) {
     // DO NOT USE THIS METHOD.
-    if (!item.detailedView) {
+    if (item.detailedView) {
       return `
-      <div class='.bookmark-item .js-bookmark-item'>
-        <li>
+      <div class=''>
+        <li class='js-bookmark-item' data-bookmark-id='${item.id}'>
           <h2>${item.title}</h2>
           <a href='${item.url}' target="_blank">
             <p>${item.url}</p>
@@ -37,17 +37,18 @@ const bookmark = (function () {
           <h3>rating:</h3>${item.rating}
             <p>${item.desc}</p>
             <button class='js-delete-bookmark' type="submit">Delete Bookmark</button>
-            <button class='js-expand-bookmark' type="submit">See More</button>
+            <button class='js-collapse-bookmark' type="submit">See Less</button>
           </div>
         </li>
       </div>
       `;
     } else {
       return `
-      <div class='.bookmark-item .js-bookmark-item'>
-        <li>
+      <div>
+        <li class='js-bookmark-item' data-bookmark-id="${item.id}">
           <h2>${item.title}</h2>
           <h3>rating:</h3>${item.rating}
+          <button class='js-expand-bookmark' type="submit">See More</button>
           </div>
         </li>
       </div>
@@ -68,12 +69,33 @@ const bookmark = (function () {
     $('.js-bookmark-list').html(stringOfBookmarks);
   };
 
+  /* Finding ID, Delete, and Updating
+  -----------------------------------*/
+
+  const findId = function (id) {
+    const items = bookmark.items;
+    return items.find(item => item.id === id);
+  };
+
+  const getId = function (item) {
+    return $(item)
+      .closest('.js-bookmark-item')
+      .data('bookmark-id');
+  };
+
+  const findAndDelete = function(id) {
+    bookmark.items = bookmark.items.filter(item => item.id !== id);
+  };
+
+
+
   /* Event Listeners
   -----------------------------------*/
 
   const eventListeners = function () {
     newBookmark();
     deleteBookmark();
+    seeMoreButton();
   };
 
   const newBookmark = function () {
@@ -98,11 +120,37 @@ const bookmark = (function () {
 
   const deleteBookmark = function () {
     $('.js-bookmark-list').on('click', '.js-delete-bookmark', event => {
-      const id = storage.findId(event.currentTarget);
+      console.log(event.currentTarget);
+      const id = bookmark.getId(event.currentTarget);
+      console.log('id is: '+ id);
       api.deleteItem(id, () => {
-        storage.findAndDelete(id);
-        this.render();
+        bookmark.findAndDelete(id);
+        bookmark.render();
       });
+    });
+  };
+
+  const seeMoreButton = function () {
+    $('.js-bookmark-list').on('click', '.js-expand-bookmark', event => {
+      console.log(event.currentTarget);
+      const id = bookmark.getId(event.currentTarget);
+      console.log('id is: '+ id);
+      const foundItem = findId(id);
+      console.log('foundItem is', foundItem);
+      foundItem.detailedView = true;
+      bookmark.render();
+    });
+  };
+
+  const seLessButton = function () {
+    $('.js-bookmark-list').on('click', '.js-expand-bookmark', event => {
+      console.log(event.currentTarget);
+      const id = bookmark.getId(event.currentTarget);
+      console.log('id is: '+ id);
+      const foundItem = findId(id);
+      console.log('foundItem is', foundItem);
+      foundItem.detailedView = true;
+      bookmark.render();
     });
   };
 
@@ -111,6 +159,9 @@ const bookmark = (function () {
     add,
     generateElement,
     generateString,
+    findId,
+    findAndDelete,
+    getId,
 
     render,
     eventListeners,

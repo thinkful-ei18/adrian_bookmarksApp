@@ -26,7 +26,7 @@ const api = (function() {
   //I NEVER WANT TO SEE THIS BOOKMARK AGAIN!
   const deleteItem = function (id, callback) {
     $.ajax({
-      url: `${BASE_URL}/bookmarks/:${id}`,
+      url: `${BASE_URL}/bookmarks/${id}`,
       method: 'DELETE',
       contentType: 'application/json',
       success: callback
