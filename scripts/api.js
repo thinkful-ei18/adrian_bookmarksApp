@@ -13,7 +13,7 @@ const api = (function() {
 
   // MAKE MY BOOKMARK!!!!
   const createItem = function (title, url, callback) {
-    const newBookmark = JSON.stringify({title:title, url: url});
+    const newBookmark = JSON.stringify({title:title, url:url});
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',

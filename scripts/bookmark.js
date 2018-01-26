@@ -65,17 +65,16 @@ const bookmark =  (function(){
 
   };
 
-  const generateString = function (bookmarks) {
-    const list = bookmarks.map((item) => generateElement(item));
+  const generateString = function (bookmark) {
+    const list = bookmark.map((item) => generateElement(item));
     return list.join('');
   };
 
   const render = function () {
-    const bookmarks = bookmark.items;
-
     console.log('`render` ran!');
-    // const stringOfBookmarks = generateElement(bookmarks);
-    $('.js-bookmark-list').html(bookmarks);
+    let items = bookmark.items;
+    const stringOfBookmarks = generateString(items);
+    $('.js-bookmark-list').html(stringOfBookmarks);
   };
 
   /* Event Listeners
@@ -86,9 +85,9 @@ const bookmark =  (function(){
   };
 
   const newBookmark = function () {
-    $('.js-new-bookmark button').submit(function (event) {
+    $('.js-new-bookmark-form').submit(function (event) {
       event.preventDefault();
-      console.log('New bookmark created');
+      console.log('`newBookmark` ran');
       const newTitle = $('.title-bookmark-input').val();
       const newURL = $('.url-bookmark-input').val();
       const newDesc = $('.desc-bookmark-input').val();
@@ -97,7 +96,7 @@ const bookmark =  (function(){
       $('.desc-bookmark-input').val('');
       api.createItem(newTitle, newURL, (newBookmark) => {
         console.log('New item created');
-        this.add(newBookmark);
+        bookmark.add(newBookmark);
         render();
       });
     });
@@ -121,10 +120,10 @@ const bookmark =  (function(){
 
 // Tests below, need to delete those soon.
 
-const testItem = bookmark.create('123', 'google', 'google.com', 'fav seach engine');
-console.log(testItem);
-bookmark.add(testItem);
-console.log(bookmark.items);
-const generatedBookmarks = bookmark.generateString(bookmark.items);
-console.log(generatedBookmarks);
-bookmark.render();
+// const testItem = bookmark.create('123', 'google', 'google.com', 'fav seach engine');
+// console.log(testItem);
+// bookmark.add(testItem);
+// console.log(bookmark.items);
+// const generatedBookmarks = bookmark.generateString(bookmark.items);
+// console.log(generatedBookmarks);
+// bookmark.render();

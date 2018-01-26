@@ -1,4 +1,4 @@
-/* global bookmark, storage, api */
+/* global bookmark, api */
 
 'use strict';
 
