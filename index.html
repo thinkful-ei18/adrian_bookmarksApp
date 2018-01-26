@@ -15,7 +15,14 @@
   <header class='header'>
     <h1>Bookmarks App</h1>
     <form id='js-bookmark-filter'>
-      <button class='js-toggle-filter button' type="submit">Minimum Rating Filter</button>
+        <label for="rating-choice">Filter By Rating</label>
+          <select class='rating-choice'>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars and Up</option>
+            <option value="3">3 Stars and Up</option>
+            <option value="2">2 Stars and Up</option>
+            <option value="1">1 Star and Up</option>
+          </select>
     </form>
   </header>
   <main>

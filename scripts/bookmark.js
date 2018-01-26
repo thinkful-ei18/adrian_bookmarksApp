@@ -5,7 +5,7 @@
 const bookmark = (function () {
 
   /* Create, Add, Generate, and Render Items
-  -----------------------------------*/
+      -----------------------------------*/
 
   const create = function (id, title, url, desc) {
 
@@ -24,7 +24,6 @@ const bookmark = (function () {
   };
 
   const generateElement = function (item) {
-    // DO NOT USE THIS METHOD.
     if (item.detailedView) {
       return `
       <div class=''>
@@ -70,7 +69,7 @@ const bookmark = (function () {
   };
 
   /* Finding ID, Delete, and Updating
-  -----------------------------------*/
+      -----------------------------------*/
 
   const findId = function (id) {
     const items = bookmark.items;
@@ -83,20 +82,21 @@ const bookmark = (function () {
       .data('bookmark-id');
   };
 
-  const findAndDelete = function(id) {
+  const findAndDelete = function (id) {
     bookmark.items = bookmark.items.filter(item => item.id !== id);
   };
 
 
 
   /* Event Listeners
-  -----------------------------------*/
+      -----------------------------------*/
 
   const eventListeners = function () {
     newBookmark();
     deleteBookmark();
     seeMoreButton();
     seeLessButton();
+    filterBy();
   };
 
   const newBookmark = function () {
@@ -123,7 +123,7 @@ const bookmark = (function () {
     $('.js-bookmark-list').on('click', '.js-delete-bookmark', event => {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
-      console.log('id is: '+ id);
+      console.log('id is: ' + id);
       api.deleteItem(id, () => {
         bookmark.findAndDelete(id);
         bookmark.render();
@@ -135,7 +135,7 @@ const bookmark = (function () {
     $('.js-bookmark-list').on('click', '.js-expand-bookmark', event => {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
-      console.log('id is: '+ id);
+      console.log('id is: ' + id);
       const foundItem = findId(id);
       console.log('foundItem is', foundItem);
       foundItem.detailedView = true;
@@ -147,11 +147,18 @@ const bookmark = (function () {
     $('.js-bookmark-list').on('click', '.js-collapse-bookmark', event => {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
-      console.log('id is: '+ id);
+      console.log('id is: ' + id);
       const foundItem = findId(id);
       console.log('foundItem is', foundItem);
       foundItem.detailedView = false;
       bookmark.render();
+    });
+  };
+
+  const filterBy = function () {
+    $('select.rating-choice').change(function () {
+      var selectedRating = $('.rating-choice option:selected').val();
+      console.log(selectedRating);
     });
   };
 
