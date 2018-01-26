@@ -31,7 +31,7 @@ const bookmark = (function () {
         <li class='js-bookmark-item' data-bookmark-id='${item.id}'>
           <h2>${item.title}</h2>
           <a href='${item.url}' target="_blank">
-            <p>${item.url}</p>
+            <p>Visit this website</p>
           </a>
           <div class='rating js-rating'>
           <h3>rating:</h3>${item.rating}
@@ -45,7 +45,7 @@ const bookmark = (function () {
     } else {
       return `
       <div>
-        <li class='js-bookmark-item' data-bookmark-id="${item.id}">
+        <li class='js-bookmark-item' data-bookmark-id='${item.id}'>
           <h2>${item.title}</h2>
           <h3>rating:</h3>${item.rating}
           <button class='js-expand-bookmark' type="submit">See More</button>
@@ -96,6 +96,7 @@ const bookmark = (function () {
     newBookmark();
     deleteBookmark();
     seeMoreButton();
+    seeLessButton();
   };
 
   const newBookmark = function () {
@@ -142,14 +143,14 @@ const bookmark = (function () {
     });
   };
 
-  const seLessButton = function () {
-    $('.js-bookmark-list').on('click', '.js-expand-bookmark', event => {
+  const seeLessButton = function () {
+    $('.js-bookmark-list').on('click', '.js-collapse-bookmark', event => {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
       console.log('id is: '+ id);
       const foundItem = findId(id);
       console.log('foundItem is', foundItem);
-      foundItem.detailedView = true;
+      foundItem.detailedView = false;
       bookmark.render();
     });
   };
