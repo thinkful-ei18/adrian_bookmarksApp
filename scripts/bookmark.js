@@ -61,10 +61,11 @@ const bookmark = (function () {
     return list.join('');
   };
 
-  const render = function () {
+  const render = function (items) {
     console.log('`render` ran!');
-    let items = bookmark.items;
-    const stringOfBookmarks = generateString(items);
+    // If we pass items, use those items, if not, use bookmark.items
+    let allBookmarks = !items ? bookmark.items : items;
+    const stringOfBookmarks = generateString(allBookmarks);
     $('.js-bookmark-list').html(stringOfBookmarks);
   };
 
@@ -159,6 +160,10 @@ const bookmark = (function () {
     $('select.rating-choice').change(function () {
       var selectedRating = $('.rating-choice option:selected').val();
       console.log(selectedRating);
+      const items = bookmark.items;
+      let filteredItems = items.filter(item => item.rating >= selectedRating);
+      console.log(filteredItems);
+      render(filteredItems);
     });
   };
 
