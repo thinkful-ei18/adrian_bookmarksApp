@@ -2,10 +2,91 @@
   box-sizing: border-box;
 }
 
-.checked {
-  color: orange;
+body {
+  margin: 0 auto;
+  background-color: whitesmoke;
+  /* padding: 50px 50px; */
 }
 
-.bookmark-item {
-  
+.header {
+  /* border: solid black 1px; */
+  background-color: indianred;
+  color: whitesmoke;
+  display: block;
+  padding: 25px 25px;
 }
+
+/* .title-bookmark-input {
+
+}
+
+url-bookmark-input {
+
+} */
+
+/* NEW BOOKMARK FORM */
+
+.container {
+  background-color: cornflowerblue;
+  color: whitesmoke;
+  /* border: solid black 1px; */
+  padding: 25px 25px;
+}
+
+label[for=desc-bookmark-input], .desc-bookmark-input:enabled {
+  display: block;
+}
+
+label[for=desc-bookmark-input] {
+  margin-top: 15px;
+}
+
+.desc-bookmark-input:enabled {
+  height: 100px;
+  width: 640px;
+  margin-bottom: 15px;
+}
+
+.js-new-bookmark button {
+  background-color: indianred;
+  color:whitesmoke;
+}
+
+
+
+/* INDIVIDUAL BOOKMARKS */
+
+.before-bookmark-list {
+  margin: 15px;
+}
+
+.bookmark-list {
+  border: solid black 1px;
+  list-style-type: none;
+  padding: 50px 50px;
+  margin: 15px;
+}
+
+.js-bookmark-item  {
+ border: solid black 1px;
+ padding: 15px 15px;
+ margin: 15px 0px;
+}
+
+.js-bookmark-item h2 {
+  text-transform: uppercase;
+}
+
+.js-bookmark-rating {
+  width: 638px;
+  margin-bottom: 25px;
+}
+
+.js-bookmark-rating legend {
+  margin-bottom: 10px;
+}
+
+.js-bookmark-rating label {
+  margin-right: 10px;
+}
+

@@ -30,14 +30,16 @@ const bookmark = (function () {
         <li class='js-bookmark-item' data-bookmark-id='${item.id}'>
           <h2>${item.title}</h2>
           <a href='${item.url}' target="_blank">
-            <p>Visit this website</p>
+            <p>Visit This Website</p>
           </a>
           <div class='rating js-rating'>
-          <h3>rating:</h3>${item.rating}
-            <p>${item.desc}</p>
-            <button class='js-delete-bookmark' type="submit">Delete Bookmark</button>
-            <button class='js-collapse-bookmark' type="submit">See Less</button>
+          <p>Rating: ${item.rating}</p>
           </div>
+            <p class='bookmark-desc'>${item.desc}</p>
+            <button class='js-collapse-bookmark' type="submit">See Less</button>
+            <button class='js-delete-bookmark' type="submit">Delete</button>
+            
+          
         </li>
       </div>
       `;
@@ -46,7 +48,7 @@ const bookmark = (function () {
       <div>
         <li class='js-bookmark-item' data-bookmark-id='${item.id}'>
           <h2>${item.title}</h2>
-          <h3>rating:</h3>${item.rating}
+          <p>Rating: ${item.rating}</p>
           <button class='js-expand-bookmark' type="submit">See More</button>
           </div>
         </li>
