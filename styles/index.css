@@ -57,18 +57,21 @@ label[for=desc-bookmark-input] {
 /* INDIVIDUAL BOOKMARKS */
 
 .before-bookmark-list {
-  margin: 15px;
+  background-color: darkgrey;
+  color: whitesmoke;
+  padding: 25px 25px;
 }
 
 .bookmark-list {
-  border: solid black 1px;
+  background-color: blanchedalmond;
   list-style-type: none;
   padding: 50px 50px;
-  margin: 15px;
 }
 
 .js-bookmark-item  {
- border: solid black 1px;
+background-color: whitesmoke;
+color: rgb(87, 87, 87);
+ /* border: solid black 1px; */
  padding: 15px 15px;
  margin: 15px 0px;
 }
