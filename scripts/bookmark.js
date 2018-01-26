@@ -2,7 +2,7 @@
 
 'use strict';
 
-const bookmark =  (function(){
+const bookmark = (function () {
 
   /* Create, Add, Generate, and Render Items
   -----------------------------------*/
@@ -30,18 +30,14 @@ const bookmark =  (function(){
       <div class='.bookmark-item .js-bookmark-item'>
         <li>
           <h2>${item.title}</h2>
-          <a href='http://${item.url}' target="_blank">
+          <a href='${item.url}' target="_blank">
             <p>${item.url}</p>
           </a>
           <div class='rating js-rating'>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+          <h3>rating:</h3>${item.rating}
             <p>${item.desc}</p>
-            <button class='js-new-bookmark button' type="submit">Delete Bookmark</button>
-            <button class='js-new-bookmark button' type="submit">Simple View</button>
+            <button class='js-delete-bookmark' type="submit">Delete Bookmark</button>
+            <button class='js-expand-bookmark' type="submit">See More</button>
           </div>
         </li>
       </div>
@@ -51,12 +47,7 @@ const bookmark =  (function(){
       <div class='.bookmark-item .js-bookmark-item'>
         <li>
           <h2>${item.title}</h2>
-          <div class='rating js-rating'>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+          <h3>rating:</h3>${item.rating}
           </div>
         </li>
       </div>
@@ -82,6 +73,7 @@ const bookmark =  (function(){
 
   const eventListeners = function () {
     newBookmark();
+    deleteBookmark();
   };
 
   const newBookmark = function () {
@@ -91,13 +83,25 @@ const bookmark =  (function(){
       const newTitle = $('.title-bookmark-input').val();
       const newURL = $('.url-bookmark-input').val();
       const newDesc = $('.desc-bookmark-input').val();
+      const newRating = $('input[name=rating]:checked').val();
+      console.log(newRating);
       $('.title-bookmark-input').val('');
       $('.url-bookmark-input').val('');
       $('.desc-bookmark-input').val('');
-      api.createItem(newTitle, newURL, (newBookmark) => {
+      api.createItem(newTitle, newURL, newDesc, newRating, (newBookmark) => {
         console.log('New item created');
         bookmark.add(newBookmark);
         render();
+      });
+    });
+  };
+
+  const deleteBookmark = function () {
+    $('.js-bookmark-list').on('click', '.js-delete-bookmark', event => {
+      const id = storage.findId(event.currentTarget);
+      api.deleteItem(id, () => {
+        storage.findAndDelete(id);
+        this.render();
       });
     });
   };
