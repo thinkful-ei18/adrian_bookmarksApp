@@ -1,3 +1,5 @@
+/* global bookmark, storage, api */
+
 'use strict';
 
 const bookmark =  (function(){
@@ -73,23 +75,32 @@ const bookmark =  (function(){
 
     console.log('`render` ran!');
     // const stringOfBookmarks = generateElement(bookmarks);
-    $('.js-bookmark-list').html(generatedBookmarks);
+    $('.js-bookmark-list').html(bookmarks);
   };
 
-  /* Finding ID, Delete, and Updating
+  /* Event Listeners
   -----------------------------------*/
 
-  const findId = function (id) {
-    return this.items.find(item => item.id === id);
+  const eventListeners = function () {
+    newBookmark();
   };
 
-  const findAndDelete = function(id) {
-    this.items = this.items.filter(item => item.id !== id);
-  };
-
-  const findAndUpdate = function (id, updatedItem) {
-    const foundItem = this.findById(id);
-    Object.assign(foundItem, updatedItem);
+  const newBookmark = function () {
+    $('.js-new-bookmark button').submit(function (event) {
+      event.preventDefault();
+      console.log('New bookmark created');
+      const newTitle = $('.title-bookmark-input').val();
+      const newURL = $('.url-bookmark-input').val();
+      const newDesc = $('.desc-bookmark-input').val();
+      $('.title-bookmark-input').val('');
+      $('.url-bookmark-input').val('');
+      $('.desc-bookmark-input').val('');
+      api.createItem(newTitle, newURL, (newBookmark) => {
+        console.log('New item created');
+        this.add(newBookmark);
+        render();
+      });
+    });
   };
 
   return {
@@ -97,11 +108,9 @@ const bookmark =  (function(){
     add,
     generateElement,
     generateString,
-    render,
 
-    findId,
-    findAndDelete,
-    findAndUpdate,
+    render,
+    eventListeners,
 
     items: [],
     showForm: false,
@@ -110,6 +119,8 @@ const bookmark =  (function(){
 
 }());
 
+// Tests below, need to delete those soon.
+
 const testItem = bookmark.create('123', 'google', 'google.com', 'fav seach engine');
 console.log(testItem);
 bookmark.add(testItem);
@@ -117,9 +128,3 @@ console.log(bookmark.items);
 const generatedBookmarks = bookmark.generateString(bookmark.items);
 console.log(generatedBookmarks);
 bookmark.render();
-
-// const fakeCreator = function (item, callback) {};
-// let newItemName = 'test-url!';
-// fakeCreator(newItemName, ());
-
-

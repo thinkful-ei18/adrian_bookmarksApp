@@ -1,3 +1,5 @@
+/* global bookmark, storage, api */
+
 'use strict';
 
 const api = (function() {

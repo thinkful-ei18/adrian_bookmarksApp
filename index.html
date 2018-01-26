@@ -15,19 +15,19 @@
   <header class='header'>
     <h1>Bookmarks App</h1>
     <form id='js-bookmark-form'>
-      <button class='js-new-bookmark button' type="submit">New Bookmark</button>
       <button class='js-toggle-filter button' type="submit">Minimum Rating Filter</button>
     </form>
   </header>
   <main>
     <!-- new bookmark form -->
-    <div id='new-bookmark-form'>
+    <form class='js-new-bookmark button'>
+    <div>
         <h2>Create A New Bookmark</h2>
         <label class='title-bookmark-input'>Bookmark Name</label>
         <input type="text" class='title-bookmark-input'>
         <label class='url-bookmark-input'>Bookmark URL</label>
         <input type="text" class='url-bookmark-input'>
-        <label class='url-bookmark-input'>Description</label>
+        <label class='desc-bookmark-input'>Description</label>
         <input type="text" class='desc-bookmark-input'>
         <fieldset class="rating">
           <legend>Please rate:</legend>
@@ -42,10 +42,11 @@
           <input type="radio" id="star1" name="rating" value="1" />
           <label for="star1" title="Sucks big time">1 star</label>
         </fieldset>
-        <button class='submit-bookmark-button' type="submit">Create New Bookmark</button>
+        <button class='js-new-bookmark button' type="submit">Create New Bookmark</button>
       </div>
+    </form>
     <ul class='bookmark-list js-bookmark-list'>
-      <!-- Collapsed bookmark item. -->
+      <!-- Collapsed bookmark item.
       <div class='bookmark-item js-bookmark-item'>
         <li>
           <h2>bookmark title</h2>
@@ -60,7 +61,7 @@
       </div>
       <br>
       <!-- Expanded bookmark item. -->
-      <div class='bookmark-item js-bookmark-item'>
+      <!-- <div class='bookmark-item js-bookmark-item'>
         <li>
           <h2>bookmark title</h2>
           <a href='www.google.com' target="_blank">
@@ -79,7 +80,7 @@
           </div>
         </li>
       </div>
-      <br>
+      <br> -->
     </ul>
   </main>
 
