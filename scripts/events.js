@@ -1,4 +1,4 @@
-/* global bookmark, storage, api */
+/* global bookmark, api */
 
 'use strict';
 
@@ -11,7 +11,7 @@ const events = (function () {
     console.log('`render` ran!');
     // If we pass items, use those items, if not, use bookmark.items
     let allBookmarks = !items ? bookmark.items : items;
-    const stringOfBookmarks = generateString(allBookmarks);
+    const stringOfBookmarks = bookmark.generateString(allBookmarks);
     $('.js-bookmark-list').html(stringOfBookmarks);
   };
 
@@ -39,7 +39,7 @@ const events = (function () {
         api.createItem(newTitle, newURL, newDesc, newRating, (newBookmark) => {
           console.log('New item created');
           bookmark.add(newBookmark);
-          bookmark.render();
+          render();
         });
       }
     });
@@ -52,7 +52,7 @@ const events = (function () {
       console.log('id is: ' + id);
       api.deleteItem(id, () => {
         bookmark.findAndDelete(id);
-        bookmark.render();
+        render();
       });
     });
   };
@@ -62,10 +62,10 @@ const events = (function () {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
       console.log('id is: ' + id);
-      const foundItem = findId(id);
+      const foundItem = bookmark.findId(id);
       console.log('foundItem is', foundItem);
       foundItem.detailedView = true;
-      bookmark.render();
+      render();
     });
   };
 
@@ -74,10 +74,10 @@ const events = (function () {
       console.log(event.currentTarget);
       const id = bookmark.getId(event.currentTarget);
       console.log('id is: ' + id);
-      const foundItem = findId(id);
+      const foundItem = bookmark.findId(id);
       console.log('foundItem is', foundItem);
       foundItem.detailedView = false;
-      bookmark.render();
+      render();
     });
   };
 
@@ -88,7 +88,7 @@ const events = (function () {
       const items = bookmark.items;
       let filteredItems = items.filter(item => item.rating >= selectedRating);
       console.log(filteredItems);
-      bookmark.render(filteredItems);
+      render(filteredItems);
     });
   };
 
@@ -101,10 +101,8 @@ const events = (function () {
   };
 
   return {
-
     eventListeners,
     render,
-
   };
 
 }());

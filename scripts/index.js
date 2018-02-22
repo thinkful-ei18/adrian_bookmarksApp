@@ -1,13 +1,13 @@
-/* global bookmark, api */
+/* global events, bookmark, api */
 
 'use strict';
 
 $(document).ready(function() {
-  bookmark.eventListeners();
-  bookmark.render();
+  events.eventListeners();
+  events.render();
 
   api.getItems((items) => {
     items.forEach((item) => bookmark.add(item));
-    bookmark.render();
+    events.render();
   });
 });
