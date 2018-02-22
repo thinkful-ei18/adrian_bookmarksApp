@@ -4,16 +4,19 @@
 
 const events = (function () {
 
-/* Event Listeners
+/* Render bookmarks to the page
       -----------------------------------*/
 
-  const eventListeners = function () {
-    newBookmark();
-    deleteBookmark();
-    seeMoreButton();
-    seeLessButton();
-    filterBy();
+  const render = function (items) {
+    console.log('`render` ran!');
+    // If we pass items, use those items, if not, use bookmark.items
+    let allBookmarks = !items ? bookmark.items : items;
+    const stringOfBookmarks = generateString(allBookmarks);
+    $('.js-bookmark-list').html(stringOfBookmarks);
   };
+
+  /* Event Listeners
+      -----------------------------------*/
 
   const newBookmark = function () {
     $('.js-new-bookmark-form').submit(function (event) {
@@ -87,6 +90,21 @@ const events = (function () {
       console.log(filteredItems);
       bookmark.render(filteredItems);
     });
+  };
+
+  const eventListeners = function () {
+    newBookmark();
+    deleteBookmark();
+    seeMoreButton();
+    seeLessButton();
+    filterBy();
+  };
+
+  return {
+
+    eventListeners,
+    render,
+
   };
 
 }());
