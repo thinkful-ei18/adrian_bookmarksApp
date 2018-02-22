@@ -114,11 +114,18 @@ const bookmark = (function () {
       $('.title-bookmark-input').val('');
       $('.url-bookmark-input').val('');
       $('.desc-bookmark-input').val('');
-      api.createItem(newTitle, newURL, newDesc, newRating, (newBookmark) => {
-        console.log('New item created');
-        bookmark.add(newBookmark);
-        render();
-      });
+
+      if (!newTitle && !newURL && !newDesc && !newRating) {
+        const error = 'A new bookmark must have a: title, URL, description and rating';
+        $('.js-error').html(error);
+
+      } else{
+        api.createItem(newTitle, newURL, newDesc, newRating, (newBookmark) => {
+          console.log('New item created');
+          bookmark.add(newBookmark);
+          render();
+        });
+      }
     });
   };
 

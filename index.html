@@ -21,6 +21,8 @@
     <form class='js-new-bookmark-form'>
       <div class='container'>
         <h2>Create A New Bookmark</h2>
+        <div class='js-error'></div>
+        <br>
         <span>
           <label for='title-bookmark-input'>Bookmark Name</label>
           <input type="text" class='title-bookmark-input'>
@@ -61,49 +63,15 @@
       </form>
     </div>
     <ul class='bookmark-list js-bookmark-list'>
-      <!-- Collapsed bookmark item.
-      <div class='bookmark-item js-bookmark-item'>
-        <li>
-          <h2>bookmark title</h2>
-          <div class='rating js-rating'>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-          </div>
-        </li>
-      </div>
-      <br>
-      <!-- Expanded bookmark item. -->
-      <!-- <div class='bookmark-item js-bookmark-item'>
-        <li>
-          <h2>bookmark title</h2>
-          <a href='www.google.com' target="_blank">
-            <p>www.google.com</p>
-          </a>
-          <div class='rating js-rating'>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non ornare augue, ut fermentum mi. Sed tempor dui
-              in augue bibendum, a sodales sem molestie. Phasellus vitae tristique elit, sit amet viverra nulla.</p>
-            <button class='js-new-bookmark button' type="submit">Delete Bookmark</button>
-            <button class='js-new-bookmark button' type="submit">Simple View</button>
-          </div>
-        </li>
-      </div>
-      <br> -->
     </ul>
   </main>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="scripts/bookmark.js"></script>
-  <script type="text/javascript" src="scripts/storage.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>
+    <!-- render -->
+  <script type="text/javascript" src="scripts/bookmark.js"></script>
+  <!-- event listeners -->
   <script type="text/javascript" src="scripts/index.js"></script>
 
 </body>

@@ -14,15 +14,15 @@ body {
   color: whitesmoke;
   display: block;
   padding: 25px 25px;
+  margin: 0 auto;
+  width: 640px;
 }
 
-/* .title-bookmark-input {
-
+.js-error {
+  font-weight: bold;
+  color: red;
 }
 
-url-bookmark-input {
-
-} */
 
 /* NEW BOOKMARK FORM */
 

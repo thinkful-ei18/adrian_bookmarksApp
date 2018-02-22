@@ -1,0 +1,1 @@
+/* global bookmark, storage, api */
